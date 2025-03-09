@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class LootboxStateManagerImpl implements LootboxStateManager {
 
-    private final Map<LootboxState, Set<Location>> lootboxesByState = Maps.newConcurrentMap();
+    private static volatile Map<LootboxState, Set<Location>> lootboxesByState = Maps.newConcurrentMap();
 
     @Override
     public void addLootbox(LootboxState state, Location location) {
@@ -43,4 +43,13 @@ public class LootboxStateManagerImpl implements LootboxStateManager {
     public Map<LootboxState, Set<Location>> getAllLootboxes() {
         return lootboxesByState;
     }
+
+    @Override
+    public void removeLootboxByLocation(Location location) {
+        lootboxesByState.entrySet().stream()
+                .filter(entry -> entry.getValue().remove(location))
+                .filter(entry -> entry.getValue().isEmpty())
+                .forEach(entry -> lootboxesByState.remove(entry.getKey()));
+    }
+
 }

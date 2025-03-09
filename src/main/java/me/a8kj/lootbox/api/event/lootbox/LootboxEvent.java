@@ -8,13 +8,14 @@ import org.bukkit.event.HandlerList;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
+import me.a8kj.lootbox.parent.entity.lootbox.Lootbox;
 
 @RequiredArgsConstructor
 @Getter
 public abstract class LootboxEvent extends Event {
 
     private static final HandlerList HANDLERS = new HandlerList();
-    private final @Nonnull LootboxEvent lootbox;
+    private final @Nonnull Lootbox lootbox;
 
     @Override
     public HandlerList getHandlers() {

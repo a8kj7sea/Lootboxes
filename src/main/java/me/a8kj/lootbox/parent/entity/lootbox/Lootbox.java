@@ -38,9 +38,9 @@ public interface Lootbox {
 
     float getSpawnRate();
 
-    void onSpawn(Lootbox lootbox);
+    void onSpawn(Lootbox lootbox , Location location);
 
-    void onDespawn(Lootbox lootbox);
+    void onDespawn(Lootbox lootbox, Location location);
 
     boolean spawn(Location location);
 

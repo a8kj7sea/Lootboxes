@@ -18,4 +18,6 @@ public interface LootboxStateManager {
     void updateLootbox(LootboxState state, Set<Location> newLocations);
 
     Map<LootboxState, Set<Location>> getAllLootboxes();
+
+    void removeLootboxByLocation(Location location);
 }

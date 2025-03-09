@@ -10,7 +10,7 @@ import java.util.HashMap;
 
 public class BukkitTaskRegistry implements Registry<BukkitTask> {
 
-    private final Map<String, BukkitTask> taskMap = new HashMap<>();
+    private static volatile Map<String, BukkitTask> taskMap = new HashMap<>();
 
     @Override
     public void register(@NonNull String key, @NonNull BukkitTask value) {
