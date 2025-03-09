@@ -1,0 +1,19 @@
+name: Lootboxes
+main: me.a8kj.lootbox.internal.plugin.LootboxPlugin
+author: a8kj7sea
+version: "0.3"
+api-version: "1.13"
+description: "A plugin that adds customizable lootboxes with various mechanics."
+website: "https://github.com/a8kj7sea/Lootboxes"
+
+commands:
+  addloc:
+    description: "Adds a new lootbox location."
+    usage: "/addloc"
+    permission: "lootboxes.addloc"
+    permission-message: "You don't have permission to use this command."
+
+permissions:
+  lootboxes.addloc:
+    description: "Allows the player to add a lootbox location."
+    default: op
