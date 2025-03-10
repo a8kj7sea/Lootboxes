@@ -7,6 +7,8 @@ import me.a8kj.lootbox.api.event.lootbox.LootboxDespawnEvent;
 import me.a8kj.lootbox.api.event.lootbox.LootboxSpawnEvent;
 import me.a8kj.lootbox.internal.plugin.LootboxPlugin;
 import me.a8kj.lootbox.internal.util.StringUtils;
+import me.a8kj.lootbox.parent.entity.lootbox.behavior.MoveableLootbox;
+import me.a8kj.lootbox.parent.entity.lootbox.behavior.SpawnableLootbox;
 import me.a8kj.lootbox.parent.entity.lootbox.enums.LootboxState;
 import me.a8kj.lootbox.parent.entity.lootbox.properties.Container;
 import me.a8kj.lootbox.parent.entity.lootbox.properties.Settings;
@@ -27,7 +29,7 @@ import org.bukkit.entity.EntityType;
 @Getter
 @Setter
 @RequiredArgsConstructor
-public abstract class LootboxBase implements Lootbox {
+public abstract class LootboxBase implements Lootbox, SpawnableLootbox, MoveableLootbox {
 
     private final String name;
     private final Settings settings;
