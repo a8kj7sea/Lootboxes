@@ -13,6 +13,11 @@ public class LootboxRegistry implements Registry<Lootbox> {
     private final Map<String, Lootbox> lootboxMap = new HashMap<>();
 
     @Override
+    public Map<String, Lootbox> getMap() {
+        return lootboxMap;
+    }
+
+    @Override
     public void register(@NonNull String key, @NonNull Lootbox value) {
         String lowerCaseKey = key.toLowerCase();
         if (lootboxMap.containsKey(lowerCaseKey)) {

@@ -7,13 +7,5 @@ description: "A plugin that adds customizable lootboxes with various mechanics."
 website: "https://github.com/a8kj7sea/Lootboxes"
 
 commands:
-  addloc:
-    description: "Adds a new lootbox location."
-    usage: "/addloc"
-    permission: "lootboxes.addloc"
-    permission-message: "You don't have permission to use this command."
-
-permissions:
-  lootboxes.addloc:
-    description: "Allows the player to add a lootbox location."
-    default: op
+  lootbox:
+    description: "Main command for managing lootboxes."

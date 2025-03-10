@@ -1,7 +1,6 @@
 package me.a8kj.config;
 
 import java.io.IOException;
-import java.util.Collections;
 import java.util.Map;
 
 import me.a8kj.config.properties.ConfigMeta;
@@ -15,10 +14,6 @@ public interface ConfigFile extends ConfigMeta {
     void serve(ConfigService service);
 
     Map<String, Object> getValues();
-
-    default Map<String, Object> getImmutableValues() {
-        return Collections.unmodifiableMap(getValues());
-    }
 
     void setValue(String key, Object value);
 

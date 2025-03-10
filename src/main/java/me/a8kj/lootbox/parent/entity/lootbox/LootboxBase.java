@@ -5,7 +5,7 @@ import lombok.Setter;
 import me.a8kj.config.ConfigFile;
 import me.a8kj.lootbox.api.event.lootbox.LootboxDespawnEvent;
 import me.a8kj.lootbox.api.event.lootbox.LootboxSpawnEvent;
-import me.a8kj.lootbox.internal.plugin.LootboxPlugin;
+import me.a8kj.lootbox.api.event.lootbox.LootboxDespawnEvent.DespawnCause;
 import me.a8kj.lootbox.internal.util.StringUtils;
 import me.a8kj.lootbox.parent.entity.lootbox.behavior.MoveableLootbox;
 import me.a8kj.lootbox.parent.entity.lootbox.behavior.SpawnableLootbox;
@@ -57,7 +57,7 @@ public abstract class LootboxBase implements Lootbox, SpawnableLootbox, Moveable
         }
 
         entity = (ArmorStand) world.spawnEntity(location, EntityType.ARMOR_STAND);
-        entity.setCustomName(StringUtils.colorize(settings.displayName() == null ? name : settings.displayName()));
+        entity.setCustomName(StringUtils.format(settings.displayName() == null ? name : settings.displayName()));
         entity.setCustomNameVisible(settings.nameVisible());
         entity.setGravity(settings.gravity());
         entity.setInvisible(!settings.visible());
@@ -78,7 +78,7 @@ public abstract class LootboxBase implements Lootbox, SpawnableLootbox, Moveable
             return;
         }
 
-        ConfigFile jsonConfig = LootboxPlugin.getInstance().getJsonConfig();
+        ConfigFile jsonConfig = getFacade().getLootBoxesConfig();
         jsonConfig.setValue(this.getUniqueId().toString(), metadata);
 
         try {
@@ -120,8 +120,21 @@ public abstract class LootboxBase implements Lootbox, SpawnableLootbox, Moveable
         getFacade().getLootboxStateManager().removeLootboxByLocation(location);
         getFacade().getLootboxStateManager().addLootbox(LootboxState.EMPTY, location);
 
+        // 3shan ma tb8a bl al json we t5rb al denia m3 enh ma bt3ml effect lanh al id
+        // ra7 lanh unique bs 3shan ma y9eer al line of file kteera
+        ConfigFile jsonConfig = getFacade().getLootBoxesConfig();
+        var lootboxId = lootbox.getUniqueId().toString();
+        if (jsonConfig.getValue(lootboxId) != null) {
+            jsonConfig.removeValue(lootboxId);
+            try {
+                jsonConfig.save();
+                Bukkit.getLogger().info("Metadata for Lootbox '" + name + "' saved successfully.");
+            } catch (IOException e) {
+                Bukkit.getLogger().severe("Error saving metadata for Lootbox '" + name + "': " + e.getMessage());
+            }
+        }
         Bukkit.getScheduler().runTask(getFacade(), () -> {
-            new LootboxDespawnEvent(lootbox).callEvent();
+            new LootboxDespawnEvent(lootbox, DespawnCause.INTERACT).callEvent();
         });
     }
 

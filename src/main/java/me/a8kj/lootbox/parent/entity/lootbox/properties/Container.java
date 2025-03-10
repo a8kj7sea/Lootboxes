@@ -4,6 +4,7 @@ import org.bukkit.inventory.ItemStack;
 import java.util.Map;
 import java.util.Set;
 
+// bfkr asheel al container contents we a5lee al spawn rate contents
 public interface Container {
 
     Set<ItemStack> getContents();

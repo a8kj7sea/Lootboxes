@@ -1,5 +1,7 @@
 package me.a8kj.lootbox.parent.structure;
 
+import java.util.Map;
+
 import lombok.NonNull;
 
 /**
@@ -52,4 +54,14 @@ public interface Registry<T> {
      */
     @NonNull
     Iterable<Pair<String, T>> entries();
+
+    /**
+     * 
+     * Get the register map
+     * 
+     * @return the registered map
+     * 
+     */
+    Map<String, T> getMap();
+
 }

@@ -27,7 +27,7 @@ public class LootboxPreview implements Lootbox {
                 .gravity(false)
                 .nameVisible(true)
                 .small(false)
-                .displayName(name)
+                .displayName(name + "&6's preview &7(RIGHT-CLICK)")
                 .headItem(headItem)
                 .visible(true)
                 .build();

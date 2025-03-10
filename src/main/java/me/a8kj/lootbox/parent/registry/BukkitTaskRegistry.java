@@ -13,13 +13,18 @@ public class BukkitTaskRegistry implements Registry<BukkitTask> {
     private static volatile Map<String, BukkitTask> taskMap = new HashMap<>();
 
     @Override
+    public Map<String, BukkitTask> getMap() {
+        return taskMap;
+    }
+
+    @Override
     public void register(@NonNull String key, @NonNull BukkitTask value) {
         taskMap.put(key, value);
     }
 
     @Override
     public void unregister(@NonNull String key) {
-        taskMap.remove(key);
+        taskMap.remove(key).cancel();
     }
 
     @Override

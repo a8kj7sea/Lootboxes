@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.Set;
 import org.bukkit.Location;
 
+import me.a8kj.config.impl.JsonConfigFile;
+
 public interface LocationManager {
 
     void addLocation(Location location);
@@ -15,4 +17,8 @@ public interface LocationManager {
     boolean hasLocation(Location location);
 
     Set<Location> getLocations();
+
+    void saveLocations(JsonConfigFile jsonConfigFile);
+
+    Set<Location> loadLocations(JsonConfigFile jsonConfigFile);
 }

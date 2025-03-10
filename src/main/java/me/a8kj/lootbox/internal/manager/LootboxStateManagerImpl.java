@@ -12,7 +12,7 @@ import java.util.Set;
 
 public class LootboxStateManagerImpl implements LootboxStateManager {
 
-    private static volatile Map<LootboxState, Set<Location>> lootboxesByState = Maps.newConcurrentMap();
+    private static volatile Map<LootboxState, Set<Location>> lootboxesByState = Maps.newHashMap();
 
     @Override
     public void addLootbox(LootboxState state, Location location) {

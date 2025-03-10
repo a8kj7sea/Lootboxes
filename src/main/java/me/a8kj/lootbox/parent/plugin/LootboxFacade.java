@@ -1,5 +1,8 @@
 package me.a8kj.lootbox.parent.plugin;
 
+import java.util.Set;
+import java.util.UUID;
+
 import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -11,7 +14,9 @@ import me.a8kj.lootbox.parent.structure.Registry;
 
 public interface LootboxFacade extends Plugin {
 
-    ConfigFile getJsonConfig();
+    ConfigFile getLocationsConfig();
+
+    ConfigFile getLootBoxesConfig();
 
     Registry<BukkitTask> getTasksRegistry();
 
@@ -20,5 +25,7 @@ public interface LootboxFacade extends Plugin {
     LocationManager getLocationManager();
 
     Registry<Lootbox> getLootboxRegistry();
+
+    Set<UUID> getPlayersInRemoveMode();
 
 }
